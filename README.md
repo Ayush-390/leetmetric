@@ -3,16 +3,16 @@ The platform retrieves real-time user data directly from the LeetCode GraphQL AP
 
 🚀 Key Features
 
-• User Lookup: Search for any LeetCode profile via username.
-• Input Validation: Built-in checks to verify username formats.
-• Real-Time Data Retrieval: Seamless integration with LeetCode's backend metrics.
-• Total Solved Counter: Displays the overall number of completed problems.
-• Difficulty Breakdown: Tracks individual progress across Easy, Medium, and Hard challenges.
-• Submission Analytics: Summarizes total and historical submission data.
-• Animated Progress Rings: Dynamic visual indicators for category completion.
-• Interactive Metric Cards: Clean, dedicated panels for distinct data points.
-• Error Resilience: Gracefully handles non-existent or invalid usernames.
-• Mobile-Friendly UI: A clean, responsive design that works on any device.
+Search LeetCode user by username
+Validate username input
+Fetch LeetCode user statistics
+Display total solved problems
+Display Easy, Medium and Hard problem progress
+Display overall submission statistics
+Dynamic progress circles
+Dynamic statistics cards
+Handle invalid or unavailable usernames
+Responsive and simple user interface
 
 🛠️ Technology Stack
 
