@@ -3,16 +3,16 @@ The platform retrieves real-time user data directly from the LeetCode GraphQL AP
 
 🚀 Key Features
 
-Search LeetCode user by username
-Validate username input
-Fetch LeetCode user statistics
-Display total solved problems
-Display Easy, Medium and Hard problem progress
-Display overall submission statistics
-Dynamic progress circles
-Dynamic statistics cards
-Handle invalid or unavailable usernames
-Responsive and simple user interface
+1.search LeetCode user by username
+2.Validate username input
+3.Fetch LeetCode user statistics
+4.Display total solved problems
+5.Display Easy, Medium and Hard problem progress
+6.Display overall submission statistics
+7.Dynamic progress circles
+8.Dynamic statistics cards
+9.Handle invalid or unavailable usernames
+10.Responsive and simple user interface
 
 🛠️ Technology Stack
 
