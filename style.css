@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    background-color: rgb(74, 74, 108);
+    color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    background-color: rgb(61, 60, 60);
+    padding:20px;
+    border-radius:5px;
+    max-width:600px;
+    width:50%;
+}
