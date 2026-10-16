@@ -22,3 +22,21 @@ body{
     max-width:600px;
     width:50%;
 }
+
+h1{
+    font-size:2rem;
+}
+.user-container{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    justify-content:start;
+}
+.user-input-container{
+    display:flex;
+    justify-content:space-between;
+}
+#user-input{
+    width:80%;
+    padding:0.4rem;
+}
