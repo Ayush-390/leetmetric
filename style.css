@@ -60,3 +60,38 @@ h1{
     background:conic-gradient(#299f5d var(--progress-degree, 0%), #283a2e 0%);
     flex-direction:column;
 }
+  
+.circle span{
+    position:relative;
+    z-index:2;
+}
+.progress{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.stats-card{
+    margin-top:2rem;
+    margin-bottom:2rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:1rem;
+    justify-content:space-evenly;
+}
+h4{
+    font-size:1rem;
+}
+.card{
+    background-color: #35672f;
+    width:40%;
+    max-width:290px;
+    padding:10px;
+    border-radius:10px;
+    min-height:4rem;
+}
+.stats-container{
+    display:none;
+}
