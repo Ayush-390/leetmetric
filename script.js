@@ -23,3 +23,47 @@
        }
        return isMatching;
     }
+    try {
+    searchButton.textContent = "Searching...";
+    searchButton.disabled = true;
+
+    // const response = await fetch(url);
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const targetUrl = 'https://leetcode.com/graphql/';
+    
+    // Concatenation of both URL (if you plan to use it: const url = proxyUrl + targetUrl;)
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+
+    const graphql = JSON.stringify({
+        query: `
+            query userSessionProgress($username: String!) {
+                allQuestionsCount {
+                    difficulty
+                    count
+                }
+                matchedUser(username: $username) {
+                    submitStats {
+                        acSubmissionNum {
+                            difficulty
+                            count
+                            submissions
+                        }
+                        totalSubmissionNum {
+                            difficulty
+                            count
+                            submissions
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { "username": username }
+    });
+
+} catch (error) {
+    console.error("Error during search:", error);
+    // Remember to re-enable your button here if an error occurs
+    searchButton.textContent = "Search";
+    searchButton.disabled = false;
+}
