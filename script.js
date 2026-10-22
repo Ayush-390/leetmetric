@@ -146,10 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    searchButton.addEventListener("click", searchUser);
-    usernameInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            searchUser();
-        }
-    });
-});
+   function upDateProgress(solved,total,label,circle){
+        const progressDegree=(solved/total)*100;
+        circle.style.setProperty("--progress-degree",`${progressDegree}%`);
+        label.textContent=`${solved}/${total}`;
+    }
