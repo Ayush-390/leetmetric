@@ -36,34 +36,40 @@
     myHeaders.append("content-type", "application/json");
 
     const graphql = JSON.stringify({
-        query: `
-            query userSessionProgress($username: String!) {
-                allQuestionsCount {
-                    difficulty
-                    count
-                }
-                matchedUser(username: $username) {
-                    submitStats {
-                        acSubmissionNum {
-                            difficulty
-                            count
-                            submissions
-                        }
-                        totalSubmissionNum {
-                            difficulty
-                            count
-                            submissions
-                        }
+    query: `
+        query userSessionProgress($username: String!) {
+            allQuestionsCount {
+                difficulty
+                count
+            }
+            matchedUser(username: $username) {
+                submitStats {
+                    acSubmissionNum {
+                        difficulty
+                        count
+                        submissions
+                    }
+                    totalSubmissionNum {
+                        difficulty
+                        count
+                        submissions
                     }
                 }
             }
-        `,
-        variables: { "username": username }
-    });
+        }
+    `,
+    variables: { username: username }
+});
 
-} catch (error) {
-    console.error("Error during search:", error);
-    // Remember to re-enable your button here if an error occurs
-    searchButton.textContent = "Search";
-    searchButton.disabled = false;
-}
+
+   const requestOptions={
+                method: "POST",
+                headers: myHeaders,
+                body: graphql,
+                redirect: "follow"
+            };
+
+            const response = await fetch(proxyUrl+targetUrl,requestOptions);
+            if(!response.ok){
+                throw new Error("Unable to fetch the user details");
+            }
