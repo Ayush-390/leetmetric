@@ -33,10 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return item.count;
     }
 
-    function updateProgress(circle, label, solved, total) {
-        const percentage = total === 0 ? 0 : Math.round((solved / total) * 100);
-        circle.style.setProperty("--progress-degree", `${percentage}%`);
-        label.textContent = `${solved}/${total}`;
+    function updateProgress(solved, total, label, circle) {
+    const percentage = total === 0 ? 0 : (solved / total) * 100;
+
+    circle.style.setProperty("--progress-degree", `${percentage}%`);
+    label.textContent = `${solved}/${total}`;
+}
+    
     }
 
     function renderSubmissionStats(submissions, acceptedSubmissions) {
@@ -57,11 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    async function searchUser() {
-        const username = usernameInput.value.trim();
-        if (!validateUsername(username)) {
-            return;
-        }
+    async function fetchUserDetails(username) {
+        
 
         searchButton.textContent = "Searching...";
         searchButton.disabled = true;
@@ -146,8 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-   function upDateProgress(solved,total,label,circle){
-        const progressDegree=(solved/total)*100;
-        circle.style.setProperty("--progress-degree",`${progressDegree}%`);
-        label.textContent=`${solved}/${total}`;
+   searchButton.addEventListener("click", function () {
+    const username = usernameInput.value;
+
+    if (validateUsername(username)) {
+        fetchUserDetails(username);
     }
+});
