@@ -33,13 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return item.count;
     }
 
-    function updateProgress(solved, total, label, circle) {
-    const percentage = total === 0 ? 0 : (solved / total) * 100;
+    function updateProgress(circle, label, solved, total) {
+        const percentage = total === 0 ? 0 : (solved / total) * 100;
 
-    circle.style.setProperty("--progress-degree", `${percentage}%`);
-    label.textContent = `${solved}/${total}`;
-}
-    
+        circle.style.setProperty("--progress-degree", `${percentage}%`);
+        label.textContent = `${solved}/${total}`;
     }
 
     function renderSubmissionStats(submissions, acceptedSubmissions) {
@@ -118,24 +116,24 @@ document.addEventListener("DOMContentLoaded", function () {
             const { acSubmissionNum, totalSubmissionNum } =
                 result.data.matchedUser.submitStats;
 
+             updateProgress(
+    getCountByDifficulty(acSubmissionNum, "Easy"),
+    getCountByDifficulty(allQuestionsCount, "Easy"),
+    easyLabel,
+    easyProgressCircle
+);
             updateProgress(
-                easyProgressCircle,
-                easyLabel,
-                getCountByDifficulty(acSubmissionNum, "Easy"),
-                getCountByDifficulty(allQuestionsCount, "Easy")
-            );
+    getCountByDifficulty(acSubmissionNum, "Medium"),
+    getCountByDifficulty(allQuestionsCount, "Medium"),
+    mediumLabel,
+    mediumProgressCircle
+);
             updateProgress(
-                mediumProgressCircle,
-                mediumLabel,
-                getCountByDifficulty(acSubmissionNum, "Medium"),
-                getCountByDifficulty(allQuestionsCount, "Medium")
-            );
-            updateProgress(
-                hardProgressCircle,
-                hardLabel,
-                getCountByDifficulty(acSubmissionNum, "Hard"),
-                getCountByDifficulty(allQuestionsCount, "Hard")
-            );
+    getCountByDifficulty(acSubmissionNum, "Hard"),
+    getCountByDifficulty(allQuestionsCount, "Hard"),
+    hardLabel,
+    hardProgressCircle
+);
             renderSubmissionStats(totalSubmissionNum, acSubmissionNum);
             statsContainer.style.display = "block";
         } catch (error) {
@@ -146,10 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-   searchButton.addEventListener("click", function () {
-    const username = usernameInput.value;
+    searchButton.addEventListener("click", function () {
+        const username = usernameInput.value;
 
-    if (validateUsername(username)) {
-        fetchUserDetails(username);
-    }
+        if (validateUsername(username)) {
+            fetchUserDetails(username);
+        }
+    });
 });
