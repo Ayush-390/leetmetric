@@ -40,19 +40,29 @@ document.addEventListener("DOMContentLoaded", function () {
         label.textContent = `${solved}/${total}`;
     }
 
-    function renderSubmissionStats(submissions, acceptedSubmissions) {
+    function renderSubmissionStats(totalSubmissionNum) {
         cardStatsContainer.replaceChildren();
 
-        ["All", "Easy", "Medium", "Hard"].forEach((difficulty) => {
-            const total = getCountByDifficulty(submissions, difficulty);
-            const accepted = getCountByDifficulty(acceptedSubmissions, difficulty);
+        [
+            ["All", "Overall Submissions"],
+            ["Easy", "Overall Easy Submissions"],
+            ["Medium", "Overall Medium Submissions"],
+            ["Hard", "Overall Hard Submissions"],
+        ].forEach(([difficulty, title]) => {
+            const submission = totalSubmissionNum.find(
+                (count) => count.difficulty === difficulty
+            );
+            if (!submission) {
+                throw new Error(`The response is missing ${difficulty} statistics`);
+            }
+
             const card = document.createElement("div");
             const heading = document.createElement("h4");
             const details = document.createElement("p");
 
             card.className = "card";
-            heading.textContent = `${difficulty} Submissions`;
-            details.textContent = `${total} total · ${accepted} accepted`;
+            heading.textContent = title;
+            details.textContent = submission.submissions;
             card.append(heading, details);
             cardStatsContainer.appendChild(card);
         });
@@ -116,25 +126,25 @@ document.addEventListener("DOMContentLoaded", function () {
             const { acSubmissionNum, totalSubmissionNum } =
                 result.data.matchedUser.submitStats;
 
-             updateProgress(
-    getCountByDifficulty(acSubmissionNum, "Easy"),
-    getCountByDifficulty(allQuestionsCount, "Easy"),
-    easyLabel,
-    easyProgressCircle
-);
             updateProgress(
-    getCountByDifficulty(acSubmissionNum, "Medium"),
-    getCountByDifficulty(allQuestionsCount, "Medium"),
-    mediumLabel,
-    mediumProgressCircle
-);
+                easyProgressCircle,
+                easyLabel,
+                getCountByDifficulty(acSubmissionNum, "Easy"),
+                getCountByDifficulty(allQuestionsCount, "Easy")
+            );
             updateProgress(
-    getCountByDifficulty(acSubmissionNum, "Hard"),
-    getCountByDifficulty(allQuestionsCount, "Hard"),
-    hardLabel,
-    hardProgressCircle
-);
-            renderSubmissionStats(totalSubmissionNum, acSubmissionNum);
+                mediumProgressCircle,
+                mediumLabel,
+                getCountByDifficulty(acSubmissionNum, "Medium"),
+                getCountByDifficulty(allQuestionsCount, "Medium")
+            );
+            updateProgress(
+                hardProgressCircle,
+                hardLabel,
+                getCountByDifficulty(acSubmissionNum, "Hard"),
+                getCountByDifficulty(allQuestionsCount, "Hard")
+            );
+            renderSubmissionStats(totalSubmissionNum);
             statsContainer.style.display = "block";
         } catch (error) {
             alert(error.message || "An error occurred while fetching user details");
