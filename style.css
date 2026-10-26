@@ -45,6 +45,9 @@ h1{
     border-radius:5px;
 
 }
+.error-message{
+    color:#ffb4b4;
+}
 .circle{
     width:120px;
     height:120px;
